@@ -1,0 +1,16 @@
+# Render blueprint. The app loads a CLIP model (PyTorch) at start-up, so it needs about 2 GB of RAM:
+# the free (512 MB) and Starter instances will run out of memory. Use "standard" (2 GB) or larger.
+services:
+  - type: web
+    name: gphotos-moments
+    runtime: python
+    plan: standard
+    rootDir: Gphotos MVP
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --chdir app -w 1 --threads 4 --timeout 180 -b 0.0.0.0:$PORT main:app
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: GEMINI_API_KEY
+        sync: false          # set in the Render dashboard; never commit it

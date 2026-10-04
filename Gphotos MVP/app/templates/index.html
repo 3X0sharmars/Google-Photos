@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Photos</title>
+<style>
+:root{--bg:#fff;--fg:#1f1f1f;--mut:#6b6b6b;--card:#f3f3f1;--line:#e4e4e0;--acc:#1a73e8;--accbg:#e8f0fe;--bad:#b3261e;--warn:#fff6dc;--shell:#dcdcd6}
+@media(prefers-color-scheme:dark){:root{--bg:#121212;--fg:#ededed;--mut:#9a9a9a;--card:#1f1f1f;--line:#2e2e2e;--acc:#8ab4f8;--accbg:#1e2a3d;--bad:#f2b8b5;--warn:#2d2813;--shell:#050505}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0}
+body{background:var(--shell);color:var(--fg);font:15px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;justify-content:center;align-items:center}
+#app{width:100%;max-width:430px;height:100dvh;max-height:900px;background:var(--bg);display:flex;flex-direction:column;position:relative;overflow:hidden}
+@media(min-width:500px){#app{border-radius:26px;box-shadow:0 10px 40px #0004;height:min(100dvh - 32px,900px)}}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;display:block}
+#top{display:flex;align-items:center;gap:6px;padding:10px 12px 6px;min-height:52px;flex:none}
+#top h1{margin:0;font-size:1.25rem;font-weight:500;flex:1;letter-spacing:-.01em}
+.ib{width:40px;height:40px;border-radius:50%;display:grid;place-items:center}.ib:active{background:var(--card)}
+.ib.dis{opacity:.38}
+#screen{flex:1;overflow-y:auto;overscroll-behavior:contain;padding-bottom:8px}
+#tabs{display:flex;border-top:1px solid var(--line);flex:none;background:var(--bg);padding-bottom:env(safe-area-inset-bottom)}
+#tabs button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0 7px;font-size:.72rem;color:var(--mut)}
+#tabs button[aria-current="page"]{color:var(--acc)}
+#tabs button[aria-current="page"] .pill{background:var(--accbg)}
+.pill{padding:3px 18px;border-radius:99px}
+/* photo grids */
+.dh{position:sticky;top:0;background:var(--bg);padding:12px 12px 6px;font-weight:500;font-size:.92rem;z-index:1}
+.gr{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.gr img,.tile img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:var(--card)}
+.gr img{cursor:pointer}
+.note{color:var(--mut);font-size:.88rem;margin:8px 14px}
+.sentinel{height:1px}
+/* collections */
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:6px 14px 14px}
+.tile{text-align:left;display:block;width:100%}
+.tile .im{border-radius:14px;overflow:hidden;aspect-ratio:1;background:var(--card);position:relative}
+.tile .im img{height:100%}
+.tile b{display:block;margin-top:6px;font-weight:500}.tile small{color:var(--mut)}
+/* search */
+.sb{display:flex;align-items:center;gap:8px;background:var(--card);border-radius:28px;padding:0 6px 0 14px;margin:4px 12px 8px;height:48px}
+.sb input{flex:1;min-width:0;border:0;background:none;font:inherit;color:inherit;outline:0;height:100%}
+.sec{font-size:.8rem;color:var(--mut);margin:14px 14px 8px;text-transform:uppercase;letter-spacing:.04em}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 12px}
+.chip{padding:8px 14px;border:1px solid var(--line);border-radius:99px;background:var(--bg)}
+.chip.on{background:var(--accbg);border-color:var(--acc);color:var(--acc)}.chip.off{opacity:.45}
+.scroll{display:flex;gap:8px;overflow-x:auto;padding:2px 12px 8px}
+.pic{flex:none;width:92px;text-align:center}.pic .im{border-radius:14px;overflow:hidden;aspect-ratio:1;background:var(--card)}.pic img{width:100%;height:100%;object-fit:cover}.pic span{display:block;font-size:.8rem;margin-top:4px}
+.sug{list-style:none;margin:0;padding:0}.sug li button{width:100%;text-align:left;padding:12px 18px;display:flex;gap:12px;align-items:center}.sug li button:active{background:var(--card)}
+/* results */
+.mc{background:var(--card);border-radius:16px;padding:12px;margin:8px 12px;cursor:pointer}
+.mc h3{margin:0;font-size:.98rem;font-weight:500}.mc small{color:var(--mut)}
+.mh{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.va{color:var(--acc);font-size:.8rem;white-space:nowrap}
+.strip{display:flex;gap:6px;overflow-x:auto;margin:8px -4px 0;padding:0 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.strip::-webkit-scrollbar{display:none}
+.strip img{flex:none;width:92px;height:92px;object-fit:cover;border-radius:10px;cursor:pointer;background:var(--line)}
+.badge{display:inline-block;font-size:.74rem;padding:2px 9px;border-radius:99px;background:var(--accbg);color:var(--acc);margin-right:6px}
+.rhead{margin:8px 14px;font-size:.9rem;color:var(--mut)}
+.banner{background:var(--warn);border-radius:12px;padding:10px 12px;margin:8px 12px;font-size:.9rem}
+.ai{background:var(--accbg);border-radius:14px;padding:10px 12px;margin:10px 12px;font-size:.92rem}.ai small{color:var(--mut)}
+.cat{margin:16px 14px 0;font-size:1rem;font-weight:500}.q{margin:0 14px 2px;color:var(--mut);font-size:.78rem}
+.err{color:var(--bad);margin:12px 14px}
+/* lightbox */
+#lb{position:absolute;inset:0;background:#000;display:none;flex-direction:column;z-index:20}
+#lb .bar{display:flex;align-items:center;padding:8px;color:#fff}
+#lb img{flex:1;min-height:0;width:100%;object-fit:contain}
+#lbc{color:#ddd;font-size:.78rem;padding:8px 14px calc(8px + env(safe-area-inset-bottom));text-align:center}#lbc a{color:#9cc2ff}
+#similar{margin:0 auto 6px;background:#ffffff1f;color:#fff;border-radius:99px;padding:9px 18px;display:block}
+.toast{position:absolute;left:50%;bottom:76px;transform:translateX(-50%);background:#333;color:#fff;padding:9px 16px;border-radius:99px;font-size:.85rem;z-index:30;white-space:nowrap}
+.foot{color:var(--mut);font-size:.72rem;margin:16px 14px 20px}
+</style></head><body>
+<div id="app">
+  <header id="top">
+    <button class="ib" id="back" aria-label="Back" hidden><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <h1 id="title">Photos</h1>
+    <button class="ib dis" id="create" aria-disabled="true" aria-label="Create (coming soon)" title="Create is coming soon"><svg viewBox="0 0 24 24"><path d="M14.5 4.5l5 5L9 20H4v-5L14.5 4.5z"/><path d="M13 6l5 5"/><path d="M4 20c1-3 3-3 5-1"/></svg></button>
+  </header>
+  <main id="screen"></main>
+  <nav id="tabs" aria-label="Main">
+    <button data-tab="photos" aria-current="page"><span class="pill"><svg viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="3"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-4.5 3.5 3 3-2.5 4.5 4"/></svg></span>Photos</button>
+    <button data-tab="collections"><span class="pill"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.8"/><rect x="13" y="4" width="7" height="7" rx="1.8"/><rect x="4" y="13" width="7" height="7" rx="1.8"/><rect x="13" y="13" width="7" height="7" rx="1.8"/></svg></span>Collections</button>
+    <button data-tab="search"><span class="pill"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></span>Search</button>
+  </nav>
+  <div id="lb"><div class="bar"><button class="ib" id="lbx" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><img id="lbi" alt=""><div id="lbc"></div><button id="similar">Find similar photos</button></div>
+</div>
+<script>
+const $=s=>document.querySelector(s),screen=$('#screen');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=d=>new Date(d+'T00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+const dayHead=d=>new Date(d+'T00:00').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+const range=(a,b)=>a===b?fmt(a):(a.slice(0,7)===b.slice(0,7)?`${+a.slice(8)}–${fmt(b)}`:`${fmt(a)} – ${fmt(b)}`);
+async function get(u){const r=await fetch(u);const j=await r.json().catch(()=>({error:'bad response ('+r.status+')'}));if(!r.ok||j.error)throw new Error(j.error||r.status);return j}
+const toast=m=>{const t=document.createElement('div');t.className='toast';t.textContent=m;$('#app').append(t);setTimeout(()=>t.remove(),1800)};
+$('#create').onclick=()=>toast('Create is coming soon');
+
+/* ---------- state + tiny router ---------- */
+let tab='photos',stack=[],view=null,S={search:{q:'',data:null,similar:null}},tl={offset:0,total:0,last:'',busy:false,done:false};
+function setHeader(title,canBack){$('#title').textContent=title;$('#back').hidden=!canBack}
+function go(t){tab=t;stack=[];document.querySelectorAll('#tabs button').forEach(b=>b.dataset.tab===t?b.setAttribute('aria-current','page'):b.removeAttribute('aria-current'));
+  ({photos:showPhotos,collections:showCollections,search:showSearch})[t]()}
+function push(fn){stack.push(fn);fn()}
+$('#back').onclick=()=>{stack.pop();stack.length?stack[stack.length-1]():go(tab)};
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>go(b.dataset.tab));
+
+/* ---------- photo grids ---------- */
+const imgs=(ps)=>ps.map(p=>`<img loading="lazy" src="${p.thumb}" data-id="${p.id}" data-full="${p.full}" alt="">`).join('');
+function wireImgs(root){root.querySelectorAll('img[data-id]').forEach(i=>i.onclick=e=>{e.stopPropagation();openPhoto(i.dataset.id,i.dataset.full)})}
+function gridWithDates(ps){let h='',cur='';for(const p of ps){if(p.date!==cur){if(cur)h+='</div>';cur=p.date;h+=`<div class="dh">${dayHead(cur)}</div><div class="gr">`}h+=imgs([p])}return h+(cur?'</div>':'')}
+function photoPage(title,ps,note){setHeader(title,true);screen.innerHTML=(note?`<p class="note">${esc(note)}</p>`:'')+(ps.length?gridWithDates(ps):'<p class="note">Nothing here yet.</p>');wireImgs(screen);screen.scrollTop=0}
+
+/* ---------- 1. Photos: timeline, newest first, endless ---------- */
+function showPhotos(){
+  setHeader('Photos',false);screen.innerHTML='<div id="tlbody"></div><div class="sentinel" id="sent"></div>';
+  tl={offset:0,total:0,last:'',busy:false,done:false};
+  const io=new IntersectionObserver(es=>{if(es[0].isIntersecting)loadMore()},{root:screen,rootMargin:'600px'});io.observe($('#sent'));loadMore();
+}
+async function loadMore(){
+  if(tl.busy||tl.done||tab!=='photos'||stack.length)return;tl.busy=true;
+  try{const j=await get(`/api/timeline?offset=${tl.offset}&limit=240`);tl.total=j.total;tl.offset+=j.photos.length;if(tl.offset>=j.total)tl.done=true;
+    const body=$('#tlbody');if(!body)return;const frag=document.createDocumentFragment();
+    for(const p of j.photos){
+      if(p.date!==tl.last){tl.last=p.date;const h=document.createElement('div');h.className='dh';h.textContent=dayHead(p.date);tl.grid=document.createElement('div');tl.grid.className='gr';frag.append(h,tl.grid)}
+      const im=document.createElement('img');im.loading='lazy';im.src=p.thumb;im.alt='';im.dataset.id=p.id;im.dataset.full=p.full;im.onclick=()=>openPhoto(p.id,p.full);tl.grid.append(im)}
+    body.append(frag);
+    if(tl.done)body.insertAdjacentHTML('beforeend','<p class="foot">That is every photo. Creative Commons photos from Flickr with <b>synthetic dates</b> to simulate a personal library; tap a photo for its credit.</p>');
+  }catch(e){const b=$('#tlbody');if(b)b.insertAdjacentHTML('beforeend',`<p class="err">${esc(e.message)}</p>`)}
+  tl.busy=false;
+}
+
+/* ---------- 2. Collections ---------- */
+const GLYPH={albums:'Albums',device:'On this device',people:'People',documents:'Documents',places:'Places',moments:'Moments'};
+async function showCollections(){
+  setHeader('Collections',false);screen.innerHTML='<p class="note">Loading…</p>';
+  try{const j=await get('/api/collections');
+    screen.innerHTML='<div class="cg">'+j.collections.map(c=>`<button class="tile" data-k="${c.key}"><div class="im"><img src="${c.cover.thumb}" alt=""></div><b>${esc(c.title)}</b><small>${c.count.toLocaleString()} ${c.unit||'items'}</small></button>`).join('')+'</div>';
+    screen.querySelectorAll('.tile').forEach(t=>t.onclick=()=>push(()=>openCollection(t.dataset.k)));
+  }catch(e){screen.innerHTML=`<p class="err">${esc(e.message)}</p>`}
+}
+async function openCollection(k){
+  setHeader(GLYPH[k]||'Collection',true);screen.innerHTML='<p class="note">Loading…</p>';
+  try{const j=await get('/api/collection/'+k);setHeader(j.title,true);
+    if(j.photos){photoPage(j.title,j.photos,j.note);return}
+    if(j.moments){screen.innerHTML=`<p class="note">${esc(j.note)}</p>`+j.moments.map((m,i)=>momentCard(m,i)).join('');wireMoments(j.moments);return}
+    screen.innerHTML=`<p class="note">${esc(j.note||'')}</p><div class="cg">`+j.items.map(it=>`<button class="tile" data-k="${it.key}" data-kind="${it.kind}"><div class="im"><img src="${it.cover.thumb}" alt=""></div><b>${esc(it.title)}</b><small>${esc(it.sub?it.sub+' · ':'')}${it.count.toLocaleString()} photos</small></button>`).join('')+'</div>';
+    screen.querySelectorAll('.tile').forEach(t=>t.onclick=()=>push(()=>openSub(t.dataset.kind,t.dataset.k)));
+  }catch(e){screen.innerHTML=`<p class="err">${esc(e.message)}</p>`}
+}
+async function openSub(kind,k){setHeader('…',true);screen.innerHTML='<p class="note">Loading…</p>';
+  try{const j=await get(`/api/${kind==='place'?'place':'album'}/${k}`);photoPage(j.title,j.photos)}catch(e){screen.innerHTML=`<p class="err">${esc(e.message)}</p>`}}
+
+/* ---------- moments (shared by collections + search) ---------- */
+let MC={};
+function momentCard(m,i,pfx='m'){const key=pfx+i;MC[key]=m;const ps=m.photos||m.thumbs;
+  return `<div class="mc" data-mk="${key}"><div class="mh"><div><h3>${range(m.start,m.end)}</h3><small>${m.count} photo${m.count>1?'s':''}${ps.length<m.count?` (showing ${ps.length})`:''}</small></div><span class="va">View all ›</span></div><div class="strip" aria-label="Photos in this moment, scrolling">${imgs(ps)}</div></div>`}
+function wireMoments(){screen.querySelectorAll('.mc').forEach(el=>el.onclick=()=>push(()=>openMoment(MC[el.dataset.mk])));wireImgs(screen);initStrips(screen)}
+async function openMoment(m){setHeader(range(m.start,m.end),true);screen.innerHTML='<p class="note">Loading…</p>';
+  try{const j=await get(`/api/browse?start=${m.start}&end=${m.end}`);photoPage(range(m.start,m.end),j.photos,`${j.photos.length} photos in this stretch (±2 days)`)}catch(e){screen.innerHTML=`<p class="err">${esc(e.message)}</p>`}}
+
+
+/* ---------- auto-scrolling strips: left to right through every matching photo ---------- */
+const REDUCE=matchMedia('(prefers-reduced-motion: reduce)').matches,strips=new Set(),SPEED=0.04;let raf=0,lastT=0;   // px per ms (~32 px/s)
+const stripIO=new IntersectionObserver(es=>es.forEach(e=>{e.target._vis=e.isIntersecting}),{root:screen,threshold:0.25});
+function initStrips(root){
+  root.querySelectorAll('.strip').forEach(el=>{if(el._init)return;el._init=true;el._pos=0;el._hold=performance.now()+900;el._vis=false;el._hover=false;stripIO.observe(el);strips.add(el);
+    const pause=()=>{el._hold=performance.now()+3000;el._pos=el.scrollLeft};
+    ['pointerdown','touchstart','wheel','focusin'].forEach(ev=>el.addEventListener(ev,pause,{passive:true}));
+    el.addEventListener('mouseenter',()=>{el._hover=true;pause()});el.addEventListener('mouseleave',()=>{el._hover=false;el._hold=performance.now()+1200});
+    el.addEventListener('scroll',()=>{if(performance.now()<el._hold)el._pos=el.scrollLeft},{passive:true})});
+  if(!raf&&!REDUCE&&strips.size)raf=requestAnimationFrame(tick);
+}
+function tick(t){
+  const dt=Math.min(64,t-(lastT||t));lastT=t;
+  for(const el of strips){
+    if(!el.isConnected){strips.delete(el);stripIO.unobserve(el);continue}
+    if(!el._vis||el._hover||t<el._hold)continue;
+    const max=el.scrollWidth-el.clientWidth;if(max<=2)continue;
+    if(el._pos>=max-1){el._pos=0;el.scrollLeft=0;el._hold=t+1600;continue}      // reached the last photo: pause, then back to the first
+    el._pos=Math.min(max,el._pos+SPEED*dt);el.scrollLeft=el._pos;                                        // slow, steady pace
+  }
+  raf=strips.size?requestAnimationFrame(tick):0;if(!raf)lastT=0;
+}
+
+/* ---------- 3. Search ---------- */
+const recent=()=>{try{return JSON.parse(localStorage.getItem('recent')||'[]')}catch(e){return[]}};
+const addRecent=q=>{try{localStorage.setItem('recent',JSON.stringify([q,...recent().filter(x=>x.toLowerCase()!==q.toLowerCase())].slice(0,6)))}catch(e){}};
+let sugCache=null,activeCat='all';
+function searchBar(val){return `<form class="sb" id="sf"><svg viewBox="0 0 24 24" style="color:var(--mut)"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input id="q" placeholder="Search your photos" autocomplete="off" value="${esc(val)}" enterkeyhint="search"><button type="button" class="ib" id="qx" aria-label="Clear" ${val?'':'hidden'}><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></form><div id="sbody"></div>`}
+async function showSearch(){
+  setHeader('Search',false);const s=S.search;screen.innerHTML=searchBar(s.q);
+  const q=$('#q');let t;
+  $('#sf').onsubmit=e=>{e.preventDefault();const v=q.value.trim();if(v)runSearch(v)};
+  $('#qx').onclick=()=>{q.value='';s.q='';s.data=null;s.similar=null;$('#qx').hidden=true;renderSearchBody();q.focus()};
+  q.oninput=()=>{$('#qx').hidden=!q.value;clearTimeout(t);t=setTimeout(()=>typeahead(q.value),140)};
+  renderSearchBody();
+}
+async function typeahead(v){
+  if(!v.trim()){renderSearchBody();return}
+  try{const j=await get('/api/suggest?q='+encodeURIComponent(v.trim()));const b=$('#sbody');if(!b||$('#q').value!==v)return;
+    b.innerHTML='<ul class="sug">'+[v.trim(),...j.suggestions].map((x,i)=>`<li><button data-q="${esc(x)}"><svg viewBox="0 0 24 24" style="color:var(--mut)"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>${i===0?`Search for “${esc(x)}”`:esc(x)}</button></li>`).join('')+'</ul>';
+    b.querySelectorAll('[data-q]').forEach(el=>el.onclick=()=>{$('#q').value=el.dataset.q;runSearch(el.dataset.q)})}catch(e){}
+}
+async function renderSearchBody(){
+  const s=S.search,b=$('#sbody');if(!b)return;
+  if(s.similar){const j=s.similar;b.innerHTML=`<p class="rhead"><span class="badge">Picture search</span>Photos that look like this one</p><div style="padding:0 12px 10px;width:110px"><img src="${j.source.thumb}" style="width:100%;border-radius:12px" alt=""></div>`+(j.photos.length?`<div class="gr">${imgs(j.photos)}</div>`:`<p class="note">${esc(j.note)}</p>`);wireImgs(b);return}
+  if(s.data){renderResults();return}
+  if(!sugCache)try{sugCache=await get('/api/suggestions')}catch(e){sugCache={text:[],pictures:[]}}
+  const r=recent();
+  b.innerHTML=(r.length?`<div class="sec">Recent</div><div class="chips">${r.map(x=>`<button class="chip" data-q="${esc(x)}">${esc(x)}</button>`).join('')}</div>`:'')+
+    `<div class="sec">Try searching</div><div class="chips">${sugCache.text.map(x=>`<button class="chip" data-q="${esc(x)}">${esc(x)}</button>`).join('')}</div>`+
+    `<div class="sec">Search by picture</div><div class="scroll">${sugCache.pictures.map(p=>`<button class="pic" data-q="${esc(p.query)}"><div class="im"><img src="${p.thumb}" alt=""></div><span>${esc(p.label)}</span></button>`).join('')}</div>`+
+    `<p class="note">Tap any photo, then <b>Find similar photos</b>, to search with that picture.</p>`;
+  b.querySelectorAll('[data-q]').forEach(el=>el.onclick=()=>{$('#q').value=el.dataset.q;runSearch(el.dataset.q)});
+}
+async function runSearch(q){
+  const s=S.search;s.q=q;s.similar=null;s.data=null;activeCat='all';addRecent(q);const b=$('#sbody');if(b)b.innerHTML='<p class="note">Searching…</p>';
+  try{s.data=await get('/api/search?q='+encodeURIComponent(q));renderSearchBody()}catch(e){if($('#sbody'))$('#sbody').innerHTML=`<p class="err">Something went wrong: ${esc(e.message)}</p>`}
+}
+function renderResults(){
+  const j=S.search.data,b=$('#sbody');MC={};let h='';
+  const mom=(list,p)=>list.map((m,i)=>momentCard(m,i,p)).join(''),grid=ps=>`<div class="gr">${imgs(ps)}</div>`;
+  if(j.route==='metadata'){h+=`<p class="rhead"><span class="badge">Matched in titles &amp; tags</span>${j.exact.photo_count} photos for “${esc(j.query)}”</p>`+(j.exact.moments.length?mom(j.exact.moments,'e'):grid(j.exact.photos))}
+  else if(j.route==='expanded'){
+    if(j.exact&&j.exact.photo_count)h+=`<p class="rhead"><span class="badge">Tagged “${esc(j.query)}”</span>only ${j.exact.photo_count} photo${j.exact.photo_count>1?'s':''} carry that tag</p>`+(j.exact.moments.length?mom(j.exact.moments,'e'):grid(j.exact.photos));
+    h+=`<p class="rhead">Can’t find ${j.exact&&j.exact.photo_count?'more direct matches':'a direct match'}, here are similar results for you.</p>`;
+    h+='<div class="chips" style="flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px"><button class="chip '+(activeCat==='all'?'on':'')+'" data-c="all">All</button>'+j.categories.map((c,i)=>`<button class="chip ${activeCat==i?'on':''} ${(c.moments.length||c.photos.length)?'':'off'}" data-c="${i}" style="white-space:nowrap">${esc(c.label)}</button>`).join('')+'</div>';
+    const show=activeCat==='all'?j.categories.map((c,i)=>[c,i]):[[j.categories[activeCat],+activeCat]];
+    for(const [c,i] of show){h+=`<div class="cat">${esc(c.label)}</div><p class="q">looks for: ${esc(c.visual_query)}</p>`;
+      if(c.moments.length)h+=mom(activeCat==='all'?c.moments.slice(0,2):c.moments,'c'+i);
+      else if(c.photos.length)h+=`<p class="note">No clear moment, closest matches:</p>`+grid(c.photos.slice(0,activeCat==='all'?6:12));
+      else h+=`<p class="note">Nothing in this library looks like that.</p>`}
+  }else if(j.route==='none')h+=`<div class="banner">${esc(j.notice)}</div>`;
+  else{h+=`<div class="banner">${esc(j.notice)}</div>`;h+=j.moments.length?mom(j.moments,'v'):(j.photos.length?`<p class="note">Closest matches:</p>`+grid(j.photos):'<p class="note">No clear matches.</p>')}
+  b.innerHTML=h;wireMoments();wireImgs(b);
+  b.querySelectorAll('.chip[data-c]').forEach(el=>el.onclick=()=>{activeCat=el.dataset.c;const y=screen.scrollTop;renderResults();screen.scrollTop=y});
+}
+
+/* ---------- lightbox: credit + picture search ---------- */
+let lbId=null;
+async function openPhoto(id,full){lbId=id;$('#lbi').src=full;$('#lbc').textContent='';$('#lb').style.display='flex';
+  try{const c=await get('/api/credit/'+id);if(lbId!==id)return;
+    const ds={exif:"from the photo’s camera data",filename:"from the file name",override:"set manually",synthetic:"simulated"}[c.date_source]||'';
+    const when=` · ${fmt(c.date)} (${ds})`;
+    $('#lbc').innerHTML=c.user_supplied?`${esc(c.title)} · ${esc(c.origin)} · licence: ${esc(c.licence)}${when}`
+      :`${esc(c.title)} · by ${esc(c.creator||'unknown')} · <a href="${esc(c.licence_url)}" target="_blank" rel="noopener">${esc(c.licence)}</a> · <a href="${esc(c.source)}" target="_blank" rel="noopener">Flickr</a>${when}`}catch(e){}}
+$('#lbx').onclick=()=>$('#lb').style.display='none';
+$('#similar').onclick=async()=>{const id=lbId;$('#lb').style.display='none';tab='search';stack=[];
+  document.querySelectorAll('#tabs button').forEach(b=>b.dataset.tab==='search'?b.setAttribute('aria-current','page'):b.removeAttribute('aria-current'));
+  S.search.q='';S.search.data=null;showSearch();$('#sbody').innerHTML='<p class="note">Looking for similar photos…</p>';
+  try{S.search.similar=await get('/api/similar/'+id);renderSearchBody()}catch(e){$('#sbody').innerHTML=`<p class="err">${esc(e.message)}</p>`}};
+go('photos');
+</script></body></html>

@@ -1,0 +1,690 @@
+{
+ "goa": {
+  "interpretation": "The user is searching for photos taken during a trip to the coastal region of Goa.",
+  "kind": "place",
+  "categories": [
+   {
+    "label": "Tropical Sandy Beaches",
+    "visual_query": "wide sandy beach with palm trees and blue ocean under bright sun",
+    "avoid_query": "snowy mountains, ice, cold grey northern coastline, rocky cliffs, dark forest"
+   },
+   {
+    "label": "Portuguese Style Architecture",
+    "visual_query": "colorful colonial buildings with arched windows and terracotta tiled roofs in sunlight",
+    "avoid_query": "modern glass skyscrapers, industrial factories, snowy landscapes, dark urban alleyways"
+   },
+   {
+    "label": "Local Seafood Dishes",
+    "visual_query": "freshly cooked fish or prawn curry served on a plate with rice",
+    "avoid_query": "fast food burgers, pizza, cold sandwiches, supermarket aisles, empty plates"
+   },
+   {
+    "label": "Beachside Shacks",
+    "visual_query": "wooden beach shack with colorful umbrellas and tables on the sand",
+    "avoid_query": "indoor office buildings, shopping malls, city streets, mountain cabins"
+   },
+   {
+    "label": "Sunset Over Water",
+    "visual_query": "vibrant orange and pink sunset reflecting over the calm tropical sea horizon",
+    "avoid_query": "bright midday sun, dark night sky, indoor lighting, rainy weather"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "bangalore": {
+  "interpretation": "The user is searching for photos taken during their travels or time spent in Bangalore, India.",
+  "kind": "place",
+  "categories": [
+   {
+    "label": "City Landmarks",
+    "visual_query": "grand colonial architecture and historic stone buildings with lush green garden surroundings",
+    "avoid_query": "snowy mountains, desert dunes, skyscrapers in New York, European medieval castles"
+   },
+   {
+    "label": "Street Scenes",
+    "visual_query": "busy urban streets with colorful auto rickshaws and dense tropical roadside trees",
+    "avoid_query": "empty highways, snowy roads, quiet suburban streets, desert landscapes, icy conditions"
+   },
+   {
+    "label": "Local Cuisine",
+    "visual_query": "traditional South Indian breakfast served on a banana leaf with steaming coffee",
+    "avoid_query": "pizza, burgers, sushi, cold salads, western fast food, snowy winter meals"
+   },
+   {
+    "label": "Parks and Gardens",
+    "visual_query": "expansive botanical gardens with large ancient trees and vibrant tropical flower beds",
+    "avoid_query": "pine forests, autumn leaves, desert cacti, rocky mountain peaks, frozen lakes"
+   },
+   {
+    "label": "Tech Campus Life",
+    "visual_query": "modern glass office buildings surrounded by manicured lawns and tropical landscaping",
+    "avoid_query": "industrial factories, old wooden barns, beach resorts, mountain cabins, snowy fields"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "kerala": {
+  "interpretation": "The user is searching for photos taken during a trip to the Indian state of Kerala.",
+  "kind": "place",
+  "categories": [
+   {
+    "label": "Backwater Houseboats",
+    "visual_query": "wooden houseboat floating on calm tropical river surrounded by lush green palm trees",
+    "avoid_query": "large cruise ships, industrial docks, frozen lakes, snowy mountains, city skyscrapers"
+   },
+   {
+    "label": "Tea Plantations",
+    "visual_query": "vast rolling hills covered in vibrant green tea bushes under a bright sky",
+    "avoid_query": "flat desert landscapes, autumn forests, snowy peaks, urban concrete buildings, dry plains"
+   },
+   {
+    "label": "Tropical Beaches",
+    "visual_query": "sandy beach with coconut palm trees leaning over turquoise ocean water at sunset",
+    "avoid_query": "rocky northern cliffs, cold grey sea, snowy coastline, pebbles, industrial harbor"
+   },
+   {
+    "label": "Traditional Kathakali Performance",
+    "visual_query": "performer with elaborate colorful makeup and large ornate headpiece on a stage",
+    "avoid_query": "modern stage plays, western theater, casual street performers, blurry crowd shots"
+   },
+   {
+    "label": "Local Cuisine",
+    "visual_query": "spicy curry served on a large green banana leaf with white rice",
+    "avoid_query": "western fast food, burgers, pizza, pasta, cold salads, plastic containers"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "temples": {
+  "interpretation": "The user is looking for photographs of religious or historical temple structures from their travels.",
+  "kind": "place",
+  "categories": [
+   {
+    "label": "Ancient Stone Temples",
+    "visual_query": "weathered stone ruins with intricate carvings and statues in a historical setting",
+    "avoid_query": "modern buildings, skyscrapers, residential houses, shopping malls, busy city streets"
+   },
+   {
+    "label": "Ornate Golden Shrines",
+    "visual_query": "bright gold architecture with tiered roofs and decorative patterns against blue sky",
+    "avoid_query": "plain concrete structures, industrial warehouses, dark interiors, blurry night shots"
+   },
+   {
+    "label": "Temple Courtyards",
+    "visual_query": "open stone plaza with incense burners and people walking near religious buildings",
+    "avoid_query": "crowded indoor markets, sports stadiums, empty parks, forest trails without buildings"
+   },
+   {
+    "label": "Religious Statues",
+    "visual_query": "large stone or metal statue of a deity surrounded by flower offerings",
+    "avoid_query": "modern garden ornaments, plastic toys, household furniture, portraits of people"
+   },
+   {
+    "label": "Traditional Gateways",
+    "visual_query": "large wooden or stone archway entrance leading into a sacred temple complex",
+    "avoid_query": "standard residential front doors, highway overpasses, tunnel entrances, metal fences"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "mumbai": {
+  "interpretation": "The user is searching for photos taken during a trip to Mumbai, India.",
+  "kind": "place",
+  "categories": [
+   {
+    "label": "Iconic Landmarks",
+    "visual_query": "large stone archway monument by the sea with crowds of people nearby",
+    "avoid_query": "modern glass skyscrapers, snowy landscapes, European cathedrals, desert dunes, forest trails"
+   },
+   {
+    "label": "Street Scenes",
+    "visual_query": "busy city street with colorful rickshaws, yellow taxis, and crowded pedestrian sidewalks",
+    "avoid_query": "empty highways, quiet suburban streets, snowy roads, rural farmland, desert landscapes"
+   },
+   {
+    "label": "Local Cuisine",
+    "visual_query": "close up of spicy street food served on metal plates or paper",
+    "avoid_query": "fine dining western meals, pizza, burgers, cold salads, supermarket aisles, empty plates"
+   },
+   {
+    "label": "Coastal Views",
+    "visual_query": "ocean waves hitting a concrete promenade with a hazy city skyline background",
+    "avoid_query": "mountain lakes, snowy peaks, dense pine forests, desert canyons, calm tropical lagoons"
+   },
+   {
+    "label": "Market Life",
+    "visual_query": "vibrant outdoor market stalls filled with colorful spices, fabrics, and fresh produce",
+    "avoid_query": "modern shopping malls, empty warehouses, snowy streets, quiet libraries, industrial factories"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "delhi": {
+  "interpretation": "The user is searching for photos taken during a trip to Delhi, India.",
+  "kind": "place",
+  "categories": [
+   {
+    "label": "Famous Historical Landmarks",
+    "visual_query": "intricate red sandstone architecture with large domes and arched gateways in India",
+    "avoid_query": "modern glass skyscrapers, European gothic cathedrals, snowy mountains, tropical beach resorts"
+   },
+   {
+    "label": "Bustling Street Markets",
+    "visual_query": "crowded narrow street with colorful fabric stalls and vibrant spice market displays",
+    "avoid_query": "quiet suburban neighborhood, empty shopping mall, clean modern supermarket, forest trail"
+   },
+   {
+    "label": "Traditional Indian Cuisine",
+    "visual_query": "close up of spicy curry dishes served in metal bowls with naan bread",
+    "avoid_query": "fast food burgers, sushi rolls, pizza slices, cold salads, western breakfast plates"
+   },
+   {
+    "label": "Local Street Scenes",
+    "visual_query": "busy urban road with auto rickshaws and colorful tuk tuks in traffic",
+    "avoid_query": "empty highway, snowy winter road, quiet countryside lane, desert landscape"
+   },
+   {
+    "label": "Religious Temples",
+    "visual_query": "ornate temple exterior with many statues and colorful religious decorations in sunlight",
+    "avoid_query": "modern office building, industrial factory, residential house, empty park bench"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "jaipur": {
+  "interpretation": "The user is searching for photos taken during a trip to the city of Jaipur, India.",
+  "kind": "place",
+  "categories": [
+   {
+    "label": "Historic Palaces",
+    "visual_query": "intricate stone carvings and ornate archways of large historic pink sandstone palaces",
+    "avoid_query": "modern glass skyscrapers, industrial buildings, snowy landscapes, western style suburban houses"
+   },
+   {
+    "label": "Local Markets",
+    "visual_query": "crowded street market stalls with colorful textiles, jewelry, and handmade pottery items",
+    "avoid_query": "supermarket aisles, empty streets, modern shopping malls, sterile office interiors"
+   },
+   {
+    "label": "Fortress Views",
+    "visual_query": "large stone fort walls overlooking a dry hilly landscape under bright sunlight",
+    "avoid_query": "green lush forests, coastal beaches, snowy mountain peaks, urban city skylines"
+   },
+   {
+    "label": "Traditional Architecture",
+    "visual_query": "symmetrical facade with many small windows and decorative lattice screens in pink",
+    "avoid_query": "brutalist concrete structures, wooden cabins, glass office buildings, industrial warehouses"
+   },
+   {
+    "label": "Street Scenes",
+    "visual_query": "bustling street with auto rickshaws, vibrant clothing, and people walking in sunlight",
+    "avoid_query": "quiet suburban roads, highway traffic, snowy winter streets, empty desert landscapes"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "chennai": {
+  "interpretation": "The user is searching for photos taken during a trip to Chennai, India.",
+  "kind": "place",
+  "categories": [
+   {
+    "label": "Coastal Landscapes",
+    "visual_query": "long sandy coastline with crashing waves and people walking on the beach",
+    "avoid_query": "snowy mountains, rocky cliffs, pine forests, cold grey northern sea"
+   },
+   {
+    "label": "Traditional Architecture",
+    "visual_query": "intricate colorful temple towers with detailed stone carvings and statues",
+    "avoid_query": "modern glass skyscrapers, gothic cathedrals, wooden cabins, industrial warehouses"
+   },
+   {
+    "label": "Local Street Scenes",
+    "visual_query": "bustling city streets with auto rickshaws and vibrant market stalls",
+    "avoid_query": "empty suburban roads, snowy streets, quiet rural farmland, desert landscapes"
+   },
+   {
+    "label": "South Indian Cuisine",
+    "visual_query": "steaming hot food served on a large green banana leaf",
+    "avoid_query": "western fast food, burgers, pizza, cold salads, steak dinners"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "hyderabad": {
+  "interpretation": "The user is searching for photos taken during a trip to the city of Hyderabad, India.",
+  "kind": "place",
+  "categories": [
+   {
+    "label": "Iconic Landmarks",
+    "visual_query": "grand historic stone archway with four minarets against a clear blue sky",
+    "avoid_query": "modern glass skyscrapers, snowy landscapes, European cathedrals, dense pine forests"
+   },
+   {
+    "label": "Local Cuisine",
+    "visual_query": "spicy layered biryani rice served in a metal bowl with fresh herbs",
+    "avoid_query": "western fast food burgers, sushi rolls, pizza, cold salads, breakfast cereal"
+   },
+   {
+    "label": "Historic Forts",
+    "visual_query": "ancient stone fortress walls and ruins on a rocky hilltop landscape",
+    "avoid_query": "modern city apartments, beach resorts, lush green rainforests, snowy mountain peaks"
+   },
+   {
+    "label": "Bustling Markets",
+    "visual_query": "vibrant street market stalls filled with colorful glass bangles and traditional fabrics",
+    "avoid_query": "empty suburban streets, quiet office buildings, sterile shopping malls, snowy winter markets"
+   },
+   {
+    "label": "Lakes and Parks",
+    "visual_query": "large calm lake with a prominent white statue in the middle water",
+    "avoid_query": "ocean waves, frozen lakes, desert dunes, dense jungle foliage, mountain streams"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "himalayas": {
+  "interpretation": "The user is searching for photos taken during a trip to the Himalayan mountain range.",
+  "kind": "place",
+  "categories": [
+   {
+    "label": "Mountain Landscapes",
+    "visual_query": "panoramic view of massive snow capped jagged mountain peaks under clear blue sky",
+    "avoid_query": "flat desert plains, rolling green hills, urban city skyline, beach coastline"
+   },
+   {
+    "label": "Hiking Trails",
+    "visual_query": "narrow dirt path winding through rocky mountain terrain with distant snowy summits visible",
+    "avoid_query": "paved city sidewalk, indoor hallway, sandy beach path, dense tropical jungle floor"
+   },
+   {
+    "label": "Local Architecture",
+    "visual_query": "traditional stone buildings with colorful prayer flags fluttering in high altitude mountain air",
+    "avoid_query": "modern glass skyscrapers, suburban houses, beach bungalows, industrial factory buildings"
+   },
+   {
+    "label": "Mountain Villages",
+    "visual_query": "small rustic village nestled in a valley surrounded by steep rocky mountain slopes",
+    "avoid_query": "busy metropolitan city center, crowded shopping mall, flat farmland, coastal fishing port"
+   },
+   {
+    "label": "Snowy Passes",
+    "visual_query": "high altitude mountain pass covered in deep snow with icy rocky terrain visible",
+    "avoid_query": "green grassy meadow, autumn forest, sandy desert dunes, tropical rainforest canopy"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "paris": {
+  "interpretation": "The user is searching for photos taken during a trip to Paris, France.",
+  "kind": "place",
+  "categories": [
+   {
+    "label": "Famous Landmarks",
+    "visual_query": "iconic iron lattice tower or grand stone triumphal arch against blue sky",
+    "avoid_query": "modern skyscrapers, tropical beaches, desert landscapes, snowy mountain peaks, rural farmland"
+   },
+   {
+    "label": "Street Cafes",
+    "visual_query": "small round tables on a sidewalk with chairs facing the street",
+    "avoid_query": "large indoor food courts, fast food chains, American style diners, beach bars"
+   },
+   {
+    "label": "Museum Interiors",
+    "visual_query": "ornate gallery halls with classical paintings and marble statues on display",
+    "avoid_query": "modern art installations, outdoor parks, residential living rooms, dark basement offices"
+   },
+   {
+    "label": "City Architecture",
+    "visual_query": "haussmann style stone buildings with grey slate roofs and wrought iron balconies",
+    "avoid_query": "glass skyscrapers, wooden cabins, suburban houses, industrial warehouses, tropical huts"
+   },
+   {
+    "label": "River Seine Views",
+    "visual_query": "stone bridges crossing a wide river with sightseeing boats passing underneath",
+    "avoid_query": "ocean waves, mountain lakes, swimming pools, desert rivers, frozen icy streams"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "london": {
+  "interpretation": "The user is searching for photos taken during a trip to London, England.",
+  "kind": "place",
+  "categories": [
+   {
+    "label": "Iconic City Landmarks",
+    "visual_query": "famous clock tower, red double decker buses, and historic stone bridges",
+    "avoid_query": "tropical beaches, desert landscapes, snowy mountains, rural farmland, modern skyscrapers"
+   },
+   {
+    "label": "Street Scenes",
+    "visual_query": "busy city streets with black taxis and traditional brick architecture buildings",
+    "avoid_query": "empty wilderness, dense forests, suburban houses, wide open highways, rural fields"
+   },
+   {
+    "label": "Parks and Gardens",
+    "visual_query": "manicured green lawns with flower beds and large leafy oak trees",
+    "avoid_query": "arid desert, rocky canyons, tropical jungle, snowy tundra, industrial factory zones"
+   },
+   {
+    "label": "Pubs and Dining",
+    "visual_query": "cozy interior of a traditional pub with wooden bar and beer",
+    "avoid_query": "fast food chains, outdoor beach bars, bright neon nightclubs, sterile office cafeterias"
+   },
+   {
+    "label": "River Thames Views",
+    "visual_query": "wide river flowing through a city with boats and stone embankments",
+    "avoid_query": "mountain lakes, ocean waves, swimming pools, small creeks, frozen icy rivers"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "new york": {
+  "interpretation": "The user is searching for photos taken during a trip to New York City.",
+  "kind": "place",
+  "categories": [
+   {
+    "label": "Iconic City Landmarks",
+    "visual_query": "tall skyscrapers, famous suspension bridges, and busy urban streets with yellow taxis",
+    "avoid_query": "rural countryside, rolling green hills, quiet forests, beaches, or desert landscapes"
+   },
+   {
+    "label": "Central Park Scenes",
+    "visual_query": "lush green park with walking paths, benches, and distant city skyline views",
+    "avoid_query": "dense industrial zones, dark alleyways, indoor shopping malls, or suburban backyards"
+   },
+   {
+    "label": "Times Square Lights",
+    "visual_query": "bright neon billboards, large digital screens, and crowds of people at night",
+    "avoid_query": "dimly lit rooms, natural landscapes, sunrise, sunset, or quiet residential streets"
+   },
+   {
+    "label": "City Food & Dining",
+    "visual_query": "close up of pizza slices, bagels, or restaurant meals on a table",
+    "avoid_query": "home cooked meals in a kitchen, outdoor camping food, or raw ingredients"
+   },
+   {
+    "label": "Subway & Transit",
+    "visual_query": "underground subway station platforms, tiled walls, and interior of moving train cars",
+    "avoid_query": "airplanes, cruise ships, rural bus stops, or private car interiors"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "singapore": {
+  "interpretation": "The user is searching for photos taken during a trip to Singapore.",
+  "kind": "place",
+  "categories": [
+   {
+    "label": "Iconic City Landmarks",
+    "visual_query": "futuristic supertree structures and large boat shaped building on top of towers",
+    "avoid_query": "european castles, ancient ruins, snowy mountains, rural farmland, desert landscapes"
+   },
+   {
+    "label": "Street Food Scenes",
+    "visual_query": "diverse plates of noodles and rice dishes served in busy outdoor markets",
+    "avoid_query": "fine dining restaurant, western fast food, empty tables, grocery store aisles"
+   },
+   {
+    "label": "Lush Tropical Gardens",
+    "visual_query": "vibrant green tropical plants with large glass domes and indoor waterfalls",
+    "avoid_query": "dry desert cactus, autumn leaves, pine forests, snowy winter landscapes"
+   },
+   {
+    "label": "Modern Skyline Views",
+    "visual_query": "tall glass skyscrapers reflecting sunlight near a calm bay at night",
+    "avoid_query": "small village houses, mountain ranges, industrial factories, suburban residential streets"
+   },
+   {
+    "label": "Cultural District Streets",
+    "visual_query": "colorful traditional shophouses with ornate windows and vibrant painted exterior walls",
+    "avoid_query": "modern glass office buildings, rural huts, industrial warehouses, snowy city streets"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "dubai": {
+  "interpretation": "The user is searching for photos taken during a trip to Dubai.",
+  "kind": "place",
+  "categories": [
+   {
+    "label": "Iconic Modern Architecture",
+    "visual_query": "tall futuristic glass skyscrapers and unique curved building silhouettes against blue sky",
+    "avoid_query": "old brick buildings, rustic wooden cabins, dense forest, snowy mountain peaks"
+   },
+   {
+    "label": "Desert Landscapes",
+    "visual_query": "vast golden sand dunes under bright sun with clear blue horizon line",
+    "avoid_query": "green grassy hills, rocky cliffs, dense jungle, snowy tundra, ocean waves"
+   },
+   {
+    "label": "Luxury Shopping Malls",
+    "visual_query": "opulent indoor shopping mall interior with high ceilings and luxury store fronts",
+    "avoid_query": "outdoor street markets, rural village shops, dark alleyways, empty abandoned buildings"
+   },
+   {
+    "label": "Coastal Waterfronts",
+    "visual_query": "calm turquoise sea water with luxury yachts and modern marina skyline views",
+    "avoid_query": "stormy grey ocean, rocky northern coastline, frozen lake, muddy river bank"
+   },
+   {
+    "label": "Traditional Souks",
+    "visual_query": "narrow alleyways filled with colorful hanging lanterns, spices, and woven fabric textiles",
+    "avoid_query": "modern office cubicles, sterile hospital corridors, industrial factory floors, empty suburban streets"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "bali": {
+  "interpretation": "The user is searching for photos taken during a trip to the island of Bali, Indonesia.",
+  "kind": "place",
+  "categories": [
+   {
+    "label": "Tropical Beaches",
+    "visual_query": "sandy beach with turquoise water, palm trees, and bright sunny tropical sky",
+    "avoid_query": "snowy mountains, ice, cold grey northern coastline, rocky cliffs, dark clouds"
+   },
+   {
+    "label": "Rice Terraces",
+    "visual_query": "lush green stepped rice paddies carved into a tropical hillside landscape",
+    "avoid_query": "flat corn fields, wheat fields, desert landscape, urban city streets, snow"
+   },
+   {
+    "label": "Traditional Temples",
+    "visual_query": "ornate stone temple architecture with intricate carvings and traditional Balinese gate structures",
+    "avoid_query": "modern glass skyscrapers, industrial buildings, gothic cathedrals, residential suburban houses"
+   },
+   {
+    "label": "Local Cuisine",
+    "visual_query": "colorful tropical fruit, satay skewers, or traditional Indonesian dishes on a table",
+    "avoid_query": "fast food burgers, pizza, cold winter soups, processed snacks, empty plates"
+   },
+   {
+    "label": "Jungle Waterfalls",
+    "visual_query": "water cascading down a rocky cliff surrounded by dense tropical green jungle",
+    "avoid_query": "dry desert canyon, frozen waterfall, city fountain, swimming pool, indoor shower"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "morning boat ride in banaras": {
+  "interpretation": "The user is looking for photos taken during a boat trip on the Ganges river in Varanasi at sunrise.",
+  "kind": "event",
+  "categories": [
+   {
+    "label": "Sunrise River Views",
+    "visual_query": "golden sunlight reflecting on calm river water with silhouettes of traditional wooden boats",
+    "avoid_query": "night time, dark sky, city lights, stormy weather, heavy rain, industrial harbor"
+   },
+   {
+    "label": "Ghats From Water",
+    "visual_query": "ancient stone steps leading down to the river with colorful buildings and temples",
+    "avoid_query": "modern skyscrapers, glass buildings, forest, desert, snowy mountains, flat coastal plains"
+   },
+   {
+    "label": "People On Boats",
+    "visual_query": "people sitting in a small wooden rowing boat on a wide river",
+    "avoid_query": "large cruise ships, motorboats, empty water, indoor settings, office buildings, crowded streets"
+   },
+   {
+    "label": "Morning Rituals",
+    "visual_query": "people performing rituals near the water edge with flowers and small oil lamps",
+    "avoid_query": "nighttime ceremonies, fireworks, sports events, indoor parties, shopping malls, busy traffic"
+   },
+   {
+    "label": "Boat Rowers",
+    "visual_query": "a person standing at the back of a wooden boat using a long oar",
+    "avoid_query": "motorized engines, steering wheels, speedboats, yachts, people swimming, empty boats"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "my scooter": {
+  "interpretation": "The user is searching for photos of their personal motorized or kick scooter.",
+  "kind": "object",
+  "categories": [
+   {
+    "label": "Electric Scooters",
+    "visual_query": "a modern electric scooter with handlebars and a deck standing on pavement",
+    "avoid_query": "motorcycles, bicycles, cars, trucks, heavy machinery, indoor furniture, office chairs"
+   },
+   {
+    "label": "Kick Scooters",
+    "visual_query": "a manual kick scooter with small wheels and metal frame on sidewalk",
+    "avoid_query": "motorized vehicles, skateboards, rollerblades, large sports equipment, playground slides"
+   },
+   {
+    "label": "Scooter In Transit",
+    "visual_query": "a person riding a scooter on a city street or bike lane",
+    "avoid_query": "people walking, cars driving, public buses, trains, crowded subway platforms"
+   },
+   {
+    "label": "Parked Scooters",
+    "visual_query": "a scooter leaning against a wall or parked on a city sidewalk",
+    "avoid_query": "abandoned trash, piles of garbage, construction debris, random metal scrap"
+   },
+   {
+    "label": "Scooter Accessories",
+    "visual_query": "a close up of a scooter helmet or a scooter charging cable",
+    "avoid_query": "car keys, bicycle locks, motorcycle helmets, sports balls, gym equipment"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "uy": {
+  "interpretation": "The user is likely searching for photos taken in Uruguay.",
+  "kind": "place",
+  "categories": [
+   {
+    "label": "Uruguayan Landscapes",
+    "visual_query": "rolling green hills with open grassy plains and distant horizon under blue sky",
+    "avoid_query": "dense tropical rainforest, snowy mountain peaks, desert sand dunes, urban city streets"
+   },
+   {
+    "label": "Coastal Beaches",
+    "visual_query": "sandy coastline with Atlantic ocean waves and rocky outcrops along the shore",
+    "avoid_query": "calm tropical turquoise lagoons, palm trees, coral reefs, frozen icy water"
+   },
+   {
+    "label": "Colonial Architecture",
+    "visual_query": "historic cobblestone streets with colorful colonial style buildings and old fashioned street lamps",
+    "avoid_query": "modern glass skyscrapers, industrial warehouses, suburban houses, futuristic city architecture"
+   },
+   {
+    "label": "Local Food Culture",
+    "visual_query": "grilled meat on a metal grate with wooden cutting boards and wine glasses",
+    "avoid_query": "fast food burgers, sushi platters, pizza boxes, Asian noodle dishes"
+   },
+   {
+    "label": "Montevideo Cityscape",
+    "visual_query": "wide coastal promenade with people walking near a large harbor and city skyline",
+    "avoid_query": "remote rural farms, dense jungle, mountain hiking trails, snowy winter landscapes"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "job i need to apply": {
+  "interpretation": "The user is looking for photos of job postings, career opportunities, or notes related to job applications.",
+  "kind": "object",
+  "categories": [
+   {
+    "label": "Job Postings",
+    "visual_query": "a printed flyer or poster on a wall advertising a job opening",
+    "avoid_query": "people posing for portraits, blurry street scenes, landscape photography, nature shots"
+   },
+   {
+    "label": "Computer Screens",
+    "visual_query": "a laptop or desktop monitor displaying a job application website or portal",
+    "avoid_query": "television screens, movies, video games, blurry dark room shots, empty desks"
+   },
+   {
+    "label": "Handwritten Notes",
+    "visual_query": "a notebook page with handwritten text about career goals or job contacts",
+    "avoid_query": "printed books, newspapers, magazines, children drawings, grocery lists, receipts"
+   },
+   {
+    "label": "Business Cards",
+    "visual_query": "a close up of a professional business card with contact information",
+    "avoid_query": "credit cards, gift cards, playing cards, blurry background, wallet contents"
+   },
+   {
+    "label": "Office Environments",
+    "visual_query": "an office interior with desks and computers where someone might work",
+    "avoid_query": "outdoor parks, residential living rooms, kitchens, bedrooms, public transport"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ },
+ "ring": {
+  "interpretation": "The user is searching for photos featuring rings, such as jewelry, engagement rings, or circular objects.",
+  "kind": "object",
+  "categories": [
+   {
+    "label": "Engagement And Wedding",
+    "visual_query": "close up of a diamond ring on a person's finger",
+    "avoid_query": "toy plastic rings, cheap costume jewelry, blurry background, dark messy room"
+   },
+   {
+    "label": "Jewelry Collections",
+    "visual_query": "assorted gold and silver rings arranged on a velvet jewelry display tray",
+    "avoid_query": "loose metal hardware, screws, bolts, industrial parts, construction site debris"
+   },
+   {
+    "label": "Circular Objects",
+    "visual_query": "a circular metal ring or hoop hanging against a plain wall",
+    "avoid_query": "square frames, rectangular objects, people, animals, landscape scenery, blurry abstract shapes"
+   },
+   {
+    "label": "Food Rings",
+    "visual_query": "a crispy golden onion ring served on a white ceramic plate",
+    "avoid_query": "whole onions, chopped vegetables, salad, soup, drinks, messy kitchen counter"
+   },
+   {
+    "label": "Sports Equipment",
+    "visual_query": "gymnastic rings hanging from straps in an indoor fitness training facility",
+    "avoid_query": "playground swings, outdoor park benches, trees, people playing sports, blurry motion"
+   }
+  ],
+  "model": "gemini-3.1-flash-lite",
+  "created": "2026-10-04"
+ }
+}

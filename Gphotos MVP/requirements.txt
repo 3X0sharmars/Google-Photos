@@ -1,0 +1,10 @@
+--extra-index-url https://download.pytorch.org/whl/cpu
+flask
+pandas
+numpy
+scikit-learn
+sentence-transformers
+torch
+pillow
+requests
+gunicorn
