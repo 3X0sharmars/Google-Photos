@@ -1,5 +1,6 @@
-node_modules
-.next
+node_modules/
+.next/
 .env*
 !.env.example
-data/analysis_checkpoint.jsonl
+*.log
+
