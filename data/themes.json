@@ -1,0 +1,67 @@
+{
+  "generated_at": "2026-10-03T18:28:39.036Z",
+  "model": "gemini-3.8-flash",
+  "sample_size": 300,
+  "themes": [
+    {
+      "id": "keyword_search_failure",
+      "label": "Keyword And Object Search Failure",
+      "definition": "Users experience failed, irrelevant, or missing results when querying specific objects, keywords, or descriptive terms."
+    },
+    {
+      "id": "face_tagging_issues",
+      "label": "Face Grouping And Tagging Limitations",
+      "definition": "Users struggle to find people due to inaccurate face detection, missing manual face tagging, or broken person grouping."
+    },
+    {
+      "id": "broken_metadata_and_dates",
+      "label": "Broken Metadata And Timeline Scrambling",
+      "definition": "Users cannot locate photos chronologically because timestamps, EXIF data, or date metadata were lost or altered during upload or export."
+    },
+    {
+      "id": "missing_temporal_context",
+      "label": "Missing Contextual And Timeline Browsing",
+      "definition": "Users struggle to jump from an individual search result to the surrounding timeline or view adjacent photos taken on the same day."
+    },
+    {
+      "id": "folder_and_album_navigation",
+      "label": "Album And Folder Hierarchy Limitations",
+      "definition": "Users struggle to locate images because cloud libraries lack subfolder structures or omit search and sorting tools inside albums."
+    },
+    {
+      "id": "unindexed_unbacked_media",
+      "label": "Unindexed Or Incomplete Cloud Backups",
+      "definition": "Photos fail to appear in search results because backup is paused, slow, or keeping files purely on device without search indexing."
+    },
+    {
+      "id": "device_attribute_filtering",
+      "label": "Device And File Attribute Filtering",
+      "definition": "Users search by technical attributes like phone model, camera source, file type, or screenshot status when content queries fail."
+    },
+    {
+      "id": "ai_search_regression",
+      "label": "AI Search Degradation And Overhauls",
+      "definition": "Users report that new AI or Gemini-based search features worsen retrieval accuracy or break previously reliable search functionality."
+    },
+    {
+      "id": "manual_scrolling_workarounds",
+      "label": "Manual Scrolling And Date Estimation",
+      "definition": "Users fall back to scrolling manually through timelines and guessing dates or locations when direct search queries prove ineffective."
+    },
+    {
+      "id": "external_tools_alternatives",
+      "label": "External Tools And Alternative Management",
+      "definition": "Users export their library or switch to third-party tools, local search utilities, or self-hosted platforms to find and organize photos."
+    },
+    {
+      "id": "photo_recovery_and_loss",
+      "label": "Deleted Photo Retrieval Attempts",
+      "definition": "Users search for ways to recover lost, vanished, or accidentally deleted photos from trash, cloud sync glitches, or account removals."
+    },
+    {
+      "id": "duplicate_and_stacking_issues",
+      "label": "Duplicate Stacking And Image Clutter",
+      "definition": "Users face difficulties locating specific images due to duplicate clutter or automatic grouping features combining similar photos."
+    }
+  ]
+}

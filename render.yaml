@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: photo-retrieval-analyzer
+    runtime: node
+    plan: free
+    rootDir: analyzer-app
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 22

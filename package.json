@@ -1,0 +1,20 @@
+{
+  "name": "photo-retrieval-analyzer",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -p ${PORT:-3000}",
+    "prepare:data": "python scripts/prepare_data.py",
+    "analyze:themes": "node --env-file-if-exists=.env --env-file-if-exists=.env.local scripts/analyze.mjs themes",
+    "analyze:classify": "node --env-file-if-exists=.env --env-file-if-exists=.env.local scripts/analyze.mjs classify",
+    "analyze:status": "node scripts/analyze.mjs status"
+  },
+  "dependencies": {
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "engines": { "node": ">=20" }
+}
