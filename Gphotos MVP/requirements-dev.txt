@@ -1,0 +1,7 @@
+# only needed to rebuild the data / the ONNX encoder (not for running the app)
+torch
+sentence-transformers
+onnx
+onnx-ir
+scikit-learn
+pillow

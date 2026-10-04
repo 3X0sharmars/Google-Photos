@@ -42,12 +42,13 @@ META = MetadataIndex(IDS)
 EPISODES = json.loads((ROOT / "data" / "episodes.json").read_text(encoding="utf-8"))["episodes"]
 NEWEST_FIRST = sorted(range(N), key=lambda i: (DATES[i], IDS[i]), reverse=True)
 
-from sentence_transformers import SentenceTransformer  # noqa: E402
-
-MODEL = SentenceTransformer("clip-ViT-B-32", device="cpu")
+import textenc  # noqa: E402  (CLIP text encoder on ONNX Runtime; no PyTorch)
 
 
-def encode(text): return MODEL.encode(text, convert_to_numpy=True, normalize_embeddings=True).astype(np.float32)
+def encode(text): return textenc.encode(text)
+
+
+encode("warm up")      # load the ONNX session now so the first search is fast
 def card(i): return dict(id=IDS[i], date=DATES[i], thumb=f"/thumb/{IDS[i]}.jpg", full=f"/photo/{IDS[i]}.jpg")
 STRIP_MAX = 60      # photos sent per moment for the auto-scrolling strip (count still shows the true total)
 def moment_json(m): return dict(start=m["start"], end=m["end"], count=m["count"], thumbs=[card(i) for i in m["thumbs"]],

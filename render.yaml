@@ -1,0 +1,16 @@
+# Render Blueprint for the Photos MVP (the research analyzer in Analyzer-app/ is a separate app, see its own README).
+# Free plan: the app uses ~240 MB (ONNX text encoder, no PyTorch). GEMINI_API_KEY is asked for in the dashboard and is never stored in git.
+services:
+  - type: web
+    name: gphotos-moments
+    runtime: python
+    plan: free
+    rootDir: Gphotos MVP
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --chdir app -w 1 --threads 2 --timeout 180 -b 0.0.0.0:$PORT main:app
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: GEMINI_API_KEY
+        sync: false

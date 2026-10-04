@@ -3,7 +3,6 @@ A "moment" = photos from the same stretch of (assigned) dates; 4 visually distin
 import datetime as dt
 
 import numpy as np
-from sklearn.cluster import KMeans
 
 TOP_K, GAP_DAYS, MIN_CLUSTER, N_THUMBS, FALLBACK_N, BROWSE_PAD = 100, 3, 3, 4, 20, 2
 ABS_FLOOR = 0.225             # a photo below this similarity is never a match
@@ -23,16 +22,33 @@ def temporal_clusters(idx, dates):
     return groups
 
 
+def _kmeans(X, k, iters=25, seed=0):
+    """Tiny k-means (k-means++ start) so the app does not need scikit-learn. Returns (labels, centres)."""
+    rng = np.random.default_rng(seed); n = len(X)
+    C = [X[int(rng.integers(n))]]
+    for _ in range(1, k):
+        d = np.min(((X[:, None, :] - np.array(C)[None]) ** 2).sum(-1), axis=1)
+        C.append(X[int(rng.choice(n, p=d / d.sum()))] if d.sum() > 0 else X[int(rng.integers(n))])
+    C = np.array(C)
+    for _ in range(iters):
+        lab = np.argmin(((X[:, None, :] - C[None]) ** 2).sum(-1), axis=1)
+        newC = np.array([X[lab == j].mean(axis=0) if (lab == j).any() else C[j] for j in range(k)])
+        if np.allclose(newC, C): break
+        C = newC
+    return lab, C
+
+
 def diverse_thumbs(members, E, dates):
     """Diversity rule: k-means (k=4) over member embeddings, nearest member to each centroid (never the 4 top scorers)."""
     members = list(members)
     if len(members) <= N_THUMBS: return sorted(members, key=lambda i: dates[i])
     X = E[members]
-    km = KMeans(n_clusters=N_THUMBS, n_init=5, random_state=0).fit(X)
+    labels, centres = _kmeans(X, N_THUMBS)
     picks = []
     for c in range(N_THUMBS):
-        local = np.where(km.labels_ == c)[0]
-        d = np.linalg.norm(X[local] - km.cluster_centers_[c], axis=1)
+        local = np.where(labels == c)[0]
+        if len(local) == 0: continue
+        d = np.linalg.norm(X[local] - centres[c], axis=1)
         picks.append(members[int(local[np.argmin(d)])])
     return sorted(set(picks), key=lambda i: dates[i])
 

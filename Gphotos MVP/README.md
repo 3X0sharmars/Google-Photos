@@ -20,7 +20,7 @@ Search returns **moments in time**, not a list. v1.1 changes the corpus and adds
 
 ## Run
 ```
-pip install flask pandas numpy scikit-learn sentence-transformers pillow requests
+pip install -r requirements.txt            # to rebuild data / the ONNX encoder also: pip install -r requirements-dev.txt
 copy .env.example .env             # add GEMINI_API_KEY (this app's own .env is git-ignored)
 python scripts/embed.py            # only if data/embeddings.npy is missing (~14 min on CPU)
 python scripts/build_metadata.py   # only if data/metadata.json is missing
@@ -65,12 +65,16 @@ scrolling left to right on its own, then pausing and looping back to the first p
 8-30 s). It pauses while you touch, swipe or hover, resumes a few seconds later, only runs for cards on screen, and is off when the device asks for reduced motion
 (you can still swipe). Tap a photo to open it; tap the card header ("View all") to browse the whole stretch +/-2 days.
 
-## Deploy
-* **Render** (works): `render.yaml` is included. Root directory = `Gphotos MVP`. Needs about **2 GB RAM** (CLIP + PyTorch), i.e. the *Standard* plan; free and
-  Starter instances run out of memory. Set `GEMINI_API_KEY` in the Render dashboard (never commit it). First request after idle can take 30-60 s while the model loads.
-* **Vercel** (not suitable as-is): this is a Flask app that loads PyTorch at start-up, which exceeds Vercel's serverless size and memory limits. It would need the CLIP
-  text encoder moved to a hosted embedding service or an ONNX build first.
-* If Gemini is unavailable (no key or quota) search still works: it falls back to a direct visual match with a visible notice.
+## Deploy (Render free tier works)
+The app no longer needs PyTorch: the CLIP **text** encoder is a 69 MB ONNX file (`models/clip_text.onnx`, weight-only 8-bit; cosine 0.999 vs the original,
+see `scripts/export_text_encoder.py`) and k-means is plain numpy. Measured memory: about 240 MB, so it fits Render's free 512 MB instance.
+1. Render dashboard -> **New + -> Blueprint** -> pick this repo. The root `render.yaml` sets: free plan, root directory `Gphotos MVP`, Python 3.12.3,
+   build `pip install -r requirements.txt`, start `gunicorn --chdir app -w 1 --threads 2 --timeout 180 -b 0.0.0.0:$PORT main:app`.
+   (Doing it by hand: New + -> Web Service, set **Root Directory = `Gphotos MVP`** and env `PYTHON_VERSION=3.12.3`.)
+2. Add the secret `GEMINI_API_KEY` in the Render dashboard (Environment). Never commit it. Without it, search still works with a visible notice.
+3. Free-tier behaviour: the service sleeps after about 15 minutes idle and the next request takes about a minute to wake; the free CPU is small, so the first
+   searches after a wake-up can take 10-30 s. Open the link a minute before a demo.
+* **Vercel is not suitable** for this Flask app (long-running Python process with a model and 330 MB of photos); use Render (or any container host).
 
 ## About this repository's content
 * Photos: 3,007 Creative Commons photos from Flickr via Openverse (creator, licence and link in `data/attribution.csv`; licences are BY, BY-SA, BY-NC, BY-NC-SA, so
