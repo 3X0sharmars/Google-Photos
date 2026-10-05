@@ -14,3 +14,14 @@ services:
         value: 3.12.3
       - key: GEMINI_API_KEY
         sync: false
+  - type: web
+    name: photo-retrieval-analyzer
+    runtime: node
+    plan: free
+    rootDir: Analyzer-app
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 22
